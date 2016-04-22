@@ -48,7 +48,7 @@ const increment = (plane) => {
 const loop = function * (globals, arr) {
   setGlobals(globals);
   let plane = populate(arr);
-  for (let n = 0; n < 100; n++) {
+  while (true) {
     plane = increment(plane);
     yield plane;
   }
