@@ -21,5 +21,7 @@
   "bugs": {
     "url": "https://github.com/bignimbus/game-of-life-n/issues"
   },
-  "homepage": "https://github.com/bignimbus/game-of-life-n#readme"
+  "homepage": "https://github.com/bignimbus/game-of-life-n#readme",
+  "devDependencies": {
+  }
 }
