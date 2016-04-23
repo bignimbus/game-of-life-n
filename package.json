@@ -4,7 +4,7 @@
   "description": "Framework for expressing Conway's Game of Life in n-dimensional space",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm install -g jasmine && jasmine"
   },
   "repository": {
     "type": "git",
