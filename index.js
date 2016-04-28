@@ -14,10 +14,10 @@ const setGlobals = (obj = {}) => {
   global.PLANE_SIZE = Math.pow(global.SIZE, global.DIMENSIONS);
 };
 
-const region = require('./grid').region,
+const {region} = require('./grid'),
   rules = require('./rules'),
-  stayAlive = rules.stayAlive,
-  becomeAlive = rules.becomeAlive;
+  {stayAlive} = rules,
+  {becomeAlive} = rules;
 
 const populate = (points = []) => {
   let plane = new Array(global.PLANE_SIZE).fill(0);

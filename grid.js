@@ -80,13 +80,13 @@ const gate = function * (iterator, coord) {
 };
 
 module.exports = {
-  gate: gate,
-  region: gate.bind(null, region),
-  segment: segment,
-  possibleSegment: possibleSegment,
-  getAxisOrigin: getAxisOrigin,
-  axis: axis,
-  inBounds: inBounds,
-  transform: transform
+  gate,
+  segment,
+  possibleSegment,
+  getAxisOrigin,
+  axis,
+  inBounds,
+  transform,
+  region: gate.bind(null, region)
 };
 

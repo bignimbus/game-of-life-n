@@ -15,7 +15,7 @@ describe('grid functions', () => {
   });
 
   describe('transform', () => {
-    let transform = grid.transform;
+    let {transform} = grid;
     it('given a point, axis, and multiple, returns the array index that represents a transformation across {axis} {multiple} points away from {point}', () => {
       stubGrid();
       expect(transform(0, 0, 0)).toBe(0);
@@ -29,7 +29,7 @@ describe('grid functions', () => {
   });
 
   describe('inBounds', () => {
-    let inBounds = grid.inBounds;
+    let {inBounds} = grid;
     it('given a point, returns a boolean indicating whether that point exists on the plane', () => {
       stubGrid();
       expect(inBounds(0)).toBe(true);
@@ -40,14 +40,14 @@ describe('grid functions', () => {
   });
 
   describe('getAxisOrigin', () => {
-    let getAxisOrigin = grid.getAxisOrigin;
+    let {getAxisOrigin} = grid;
     it('finds the point that forms a line segment with {point} that intersects with the origin of {ax} axis', () => {
       stubGrid();
     });
   });
 
   describe('axis', () => {
-    let axis = grid.axis;
+    let {axis} = grid;
     it('given an axis and point, iterates over all points on that axis that could exist and intersect with {point}', () => {
       stubGrid();
       expect([...axis(0, 0)]).toEqual([0, 1, 2, 3]);
@@ -63,7 +63,7 @@ describe('grid functions', () => {
   });
 
   describe('possibleSegment', () => {
-    let possibleSegment = grid.possibleSegment;
+    let {possibleSegment} = grid;
     it('given an axis, point and bound, iterates over all existing or non-existant points on that axis within {bound} units of {point}', () => {
       stubGrid();
       expect(possibleSegment(0, 1, 1, -1)).toEqual([0, 1, 2]);
@@ -76,7 +76,7 @@ describe('grid functions', () => {
   });
 
   describe('segment', () => {
-    let segment = grid.segment;
+    let {segment} = grid;
     it('given an axis, point and bound, returns all existing points on that axis within {bound} units of {point} and the corresponding index of the line segment', () => {
       stubGrid();
       expect(segment(0, 0, 1, -1)).toEqual([[0, 0], [1, 1]]);
@@ -90,7 +90,7 @@ describe('grid functions', () => {
   });
 
   describe('gate', () => {
-    let gate = grid.gate;
+    let {gate} = grid;
     function * testIterator () {
       for (let n = 0; n < 4; n++) {
         yield n;
@@ -103,7 +103,7 @@ describe('grid functions', () => {
   });
 
   describe('region', () => {
-    let region = grid.region;
+    let {region} = grid;
     it('given a bound and a point, iterates over all points {bound} or fewer units away', () => {
       stubGrid({size: 4, dimensions: 2});
       expect([...region(0)].sort((a, b) => a > b ? 1 : -1)).toEqual([1, 4, 5]);
