@@ -8,10 +8,10 @@ Any dead cell with exactly three live neighbours becomes a live cell, as if by r
 
 'use strict';
 
-const setGlobals = (obj) => {
+const setGlobals = (obj = {}) => {
   global.SIZE = obj.size || 4;
   global.DIMENSIONS = obj.dimensions || 2;
-  global.PLANE_SIZE = Math.pow(obj.size, obj.dimensions);
+  global.PLANE_SIZE = Math.pow(global.SIZE, global.DIMENSIONS);
 };
 
 const region = require('./grid').region,
@@ -19,9 +19,9 @@ const region = require('./grid').region,
   stayAlive = rules.stayAlive,
   becomeAlive = rules.becomeAlive;
 
-const populate = (points) => {
+const populate = (points = []) => {
   let plane = new Array(global.PLANE_SIZE).fill(0);
-  (points || []).forEach((point) => {
+  points.forEach((point) => {
     plane[point] = 1;
   });
   return plane;
