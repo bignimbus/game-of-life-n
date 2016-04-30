@@ -1,6 +1,6 @@
 'use strict';
 
-const grid = require('../grid');
+const grid = require('../lib/grid');
 
 const stubGrid = (obj) => {
   obj = obj || {};

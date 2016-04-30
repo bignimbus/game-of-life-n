@@ -1,6 +1,6 @@
 'use strict';
 
-const rules = require('../rules');
+const rules = require('../lib/rules');
 
 describe('rules', () => {
   describe('stayAlive', () => {

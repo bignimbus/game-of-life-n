@@ -8,53 +8,9 @@ Any dead cell with exactly three live neighbours becomes a live cell, as if by r
 
 'use strict';
 
-const setGlobals = (obj = {}) => {
-  global.SIZE = obj.size || 4;
-  global.DIMENSIONS = obj.dimensions || 2;
-  global.PLANE_SIZE = Math.pow(global.SIZE, global.DIMENSIONS);
-};
+const {gameLoop} = require('./lib/game');
 
-const {region} = require('./grid'),
-  rules = require('./rules'),
-  {stayAlive} = rules,
-  {becomeAlive} = rules;
-
-const populate = (points = []) => {
-  let plane = new Array(global.PLANE_SIZE).fill(0);
-  points.forEach((point) => {
-    plane[point] = 1;
-  });
-  return plane;
-};
-
-const compareNeighbors = (localState, point, plane) => {
-  let sum = 0,
-    method = localState ? stayAlive : becomeAlive;
-  for (let n of region(point)) {
-    sum += plane[n];
-  }
-  return Number(method(sum));
-};
-
-const increment = (plane) => {
-  let state = new Array(global.PLANE_SIZE);
-  plane.forEach((localState, point) => {
-    let isAlive = compareNeighbors(localState, point, plane);
-    state[point] = isAlive;
-  });
-  return state;
-};
-
-const loop = function * (globals, arr) {
-  setGlobals(globals);
-  let plane = populate(arr);
-  while (true) {
-    plane = increment(plane);
-    yield plane;
-  }
-};
-
-const gameFactory = (globals, arr) => loop(globals, arr);
+const gameFactory = (globals, arr) => gameLoop(globals, arr);
 
 module.exports = gameFactory;
 
