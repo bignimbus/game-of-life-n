@@ -5,23 +5,24 @@ const rules = require('../lib/rules');
 describe('rules', () => {
   describe('stayAlive', () => {
     let stayAlive = rules.stayAlive;
-    it('should return true if the given number / dimensions is >= 3/16 and < 5/16', () => {
+    it('should return true if the given number / dimensions is >= 3/16 and < 7/16', () => {
       global.DIMENSIONS = 2;
       expect(stayAlive(1)).toBe(false);
       expect(stayAlive(2)).toBe(true);
-      expect(stayAlive(3)).toBe(false);
+      expect(stayAlive(3)).toBe(true);
+      expect(stayAlive(4)).toBe(false);
 
       global.DIMENSIONS = 3;
       expect(stayAlive(4)).toBe(false);
       expect(stayAlive(5)).toBe(true);
-      expect(stayAlive(8)).toBe(true);
-      expect(stayAlive(9)).toBe(false);
+      expect(stayAlive(11)).toBe(true);
+      expect(stayAlive(12)).toBe(false);
 
       global.DIMENSIONS = 4;
       expect(stayAlive(14)).toBe(false);
       expect(stayAlive(15)).toBe(true);
-      expect(stayAlive(24)).toBe(true);
-      expect(stayAlive(25)).toBe(false);
+      expect(stayAlive(34)).toBe(true);
+      expect(stayAlive(35)).toBe(false);
     });
   });
 
