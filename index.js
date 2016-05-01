@@ -10,7 +10,7 @@ Any dead cell with exactly three live neighbours becomes a live cell, as if by r
 
 const {gameLoop} = require('./lib/game');
 
-const gameFactory = (globals, arr) => gameLoop(globals, arr);
+const gameFactory = (globals, ...arr) => gameLoop(globals, ...arr);
 
 module.exports = gameFactory;
 
