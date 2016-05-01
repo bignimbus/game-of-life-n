@@ -1,6 +1,6 @@
 'use strict';
 
-const game = require('../lib/game');
+const game = require('../../lib/game');
 
 describe('game', () => {
   describe('#setGlobals', () => {
