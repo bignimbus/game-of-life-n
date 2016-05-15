@@ -28,6 +28,27 @@ describe('grid functions', () => {
     });
   });
 
+  describe('toCoord', () => {
+    let {toCoord} = grid;
+    it('translates a single point into an array of cartesian coordinates', () => {
+      stubGrid({size: 3, dimensions: 3});
+      expect(toCoord(0)).toEqual([0, 0, 0]);
+      expect(toCoord(3)).toEqual([0, 1, 0]);
+      expect(toCoord(9)).toEqual([0, 0, 1]);
+      expect(toCoord(10)).toEqual([1, 0, 1]);
+
+      stubGrid({size: 4, dimensions: 4});
+      expect(toCoord(0)).toEqual([0, 0, 0, 0]);
+      expect(toCoord(1)).toEqual([1, 0, 0, 0]);
+      expect(toCoord(4)).toEqual([0, 1, 0, 0]);
+      expect(toCoord(16)).toEqual([0, 0, 1, 0]);
+      expect(toCoord(64)).toEqual([0, 0, 0, 1]);
+      expect(toCoord(68)).toEqual([0, 1, 0, 1]);
+      expect(toCoord(69)).toEqual([1, 1, 0, 1]);
+      expect(toCoord(70)).toEqual([2, 1, 0, 1]);
+    });
+  });
+
   describe('inBounds', () => {
     let {inBounds} = grid;
     it('given a point, returns a boolean indicating whether that point exists on the plane', () => {

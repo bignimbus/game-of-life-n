@@ -9,8 +9,12 @@ Any dead cell with exactly three live neighbours becomes a live cell, as if by r
 'use strict';
 
 const {gameLoop} = require('./lib/game');
+const {toCoord} = require('./lib/grid');
 
 const gameFactory = (globals, ...arr) => gameLoop(globals, ...arr);
 
-module.exports = gameFactory;
+module.exports = {
+  gameFactory,
+  toCoord
+};
 

@@ -7,7 +7,7 @@ This is a framework for expressing Conway's Game of Life in an n-cube of arbitra
 The Game of Life<sup>n</sup> module exports a generator function.  The function accepts two optional arguments.  The first argument is an object indicating the size and dimensions of the game field.  The second argument is a comma-separated list of points that represent which cells are "alive" at the start of the game.
 
 ```js
-const gameFactory = require('game-of-life-n');
+const {gameFactory} = require('game-of-life-n');
 let game = gameFactory({
   size: 4, // length of each side of the square, cube or hypercube
   dimensions: 2 // number of spatial dimensions; 2 = square, 3 = cube, 4+ = hypercube
@@ -19,3 +19,21 @@ JavaScript does not support true multidimensional arrays, so Game of Life<sup>n<
 
 ## Grid Conventions
 A single array can effectively represent multidimensional space in Game of Life<sup>n</sup> by using arithmetic to look up coordinates.  In a game of 3 dimensions with length 3, the point at coordinates (0, 0, 0) is stored at Array[0].  Point (0, 0, 1) is stored at Array[18].  See `./lib/grid.js` for a more detailed look at the arithmetic that powers the grid system.
+
+## toCoord Function
+In order to translate any array index into an array of cartesian coordinates, use the `toCoord` function.  This may assist you if you are interfacing with graphing libraries.
+
+```js
+const gameOfLifeN = require('game-of-life-n'),
+  {gameFactory} = gameOfLifeN,
+  {toCoord} = gameOfLifeN;
+
+let game = gameFactory({
+  size: 3,
+  dimensions: 3
+}, 0, 1, 2, 3);
+
+toCoord(11);
+// returns [2, 0, 1]
+// where x = 2, y = 0, z = 1
+```
