@@ -15,7 +15,52 @@ let game = gameFactory({
 ```
 
 ## Game State
-JavaScript does not support true multidimensional arrays, so Game of Life<sup>n</sup> uses a single arrayto represent the game state.  This array is one-dimensional and contains `0`s and `1`s.  `1` represents a live cell, and `0` represents a dead cell.
+JavaScript does not support true multidimensional arrays, so Game of Life<sup>n</sup> uses a single array to represent the game state.  This array is one-dimensional and contains `0`s and `1`s.  `1` represents a live cell, and `0` represents a dead cell.
+
+The actual game object is a generator, to be used like so:
+
+```js
+let game = gameFactory({
+  size: 4,
+  dimensions: 2
+}, 0, 1, 2, 5, 6, 7, 8, 9, 14);
+
+/* 
+The first value represents the initial game state.  Note that the cells
+that are alive match the indices specified in the arguments.
+*/
+game.next().value;
+/*
+[
+  1, 1, 1, 0,
+  0, 1, 1, 1,
+  1, 1, 0, 0,
+  0, 0, 1, 0
+]
+*/
+
+game.next().value;
+/*
+[
+  1, 0, 0, 1,
+  0, 0, 0, 1,
+  1, 0, 0, 1,
+  0, 1, 0, 0
+]
+*/
+
+game.next().value;
+/*
+[
+  0, 0, 0, 0,
+  0, 0, 1, 1,
+  0, 0, 1, 0,
+  0, 0, 0, 0
+]
+*/
+
+// etc.
+```
 
 ## Grid Conventions
 A single array can effectively represent multidimensional space in Game of Life<sup>n</sup> by using arithmetic to look up coordinates.  In a game of 3 dimensions with length 3, the point at coordinates (0, 0, 0) is stored at Array[0].  Point (0, 0, 1) is stored at Array[18].  See `./lib/grid.js` for a more detailed look at the arithmetic that powers the grid system.
