@@ -4,7 +4,7 @@
   "description": "Framework for expressing Conway's Game of Life in n-dimensional space",
   "main": "index.js",
   "scripts": {
-    "test": "npm install -g jasmine && jasmine"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,6 @@
   },
   "homepage": "https://github.com/bignimbus/game-of-life-n#readme",
   "devDependencies": {
+    "jasmine": "^3.1.0"
   }
 }
