@@ -100,13 +100,27 @@ describe('grid functions', () => {
     let {finiteSegment} = grid;
     it('given an axis, point and bound, returns all existing points on that axis within {bound} units of {point} and the corresponding index of the line segment', () => {
       stubGrid();
-      expect(finiteSegment(0, 0, 1, -1)).toEqual([[0, 0], [1, 1]]);
-      expect(finiteSegment(0, 1, 1, -1)).toEqual([[0, -1], [1, 0], [2, 1]]);
-      expect(finiteSegment(0, 3, 1, -1)).toEqual([[2, -1], [3, 0]]);
-      expect(finiteSegment(0, 3, 2, -2)).toEqual([[1, -1], [2, 0], [3, 1]]);
-      expect(finiteSegment(1, 0, 1, -1)).toEqual([[0, 0], [4, 1]]);
-      expect(finiteSegment(0, 255, 1, -1)).toEqual([[254, -1], [255, 0]]);
-      expect(finiteSegment(0, 4, 1, -1)).toEqual([[4, 0], [5, 1]]);
+      expect(finiteSegment(0, 0, 1, -1)).toEqual([0, 1]);
+      expect(finiteSegment(0, 1, 1, -1)).toEqual([0, 1, 2]);
+      expect(finiteSegment(0, 3, 1, -1)).toEqual([2, 3]);
+      expect(finiteSegment(0, 3, 2, -2)).toEqual([1, 2, 3]);
+      expect(finiteSegment(1, 0, 1, -1)).toEqual([0, 4]);
+      expect(finiteSegment(0, 255, 1, -1)).toEqual([254, 255]);
+      expect(finiteSegment(0, 4, 1, -1)).toEqual([4, 5]);
+    });
+  });
+
+  describe('infiniteSegment', () => {
+    let {infiniteSegment} = grid;
+    it('given an axis, point and bound, returns all existing points on that axis within {bound} units of {point} and the corresponding index of the line segment, modulo', () => {
+      stubGrid();
+      expect(infiniteSegment(0, 0, 1, -1)).toEqual([3, 0, 1]);
+      expect(infiniteSegment(0, 1, 1, -1)).toEqual([0, 1, 2]);
+      expect(infiniteSegment(0, 3, 1, -1)).toEqual([2, 3, 0]);
+      expect(infiniteSegment(0, 3, 2, -2)).toEqual([1, 2, 3, 0]);
+      expect(infiniteSegment(1, 0, 1, -1)).toEqual([12, 0, 4]);
+      expect(infiniteSegment(0, 255, 1, -1)).toEqual([254, 255, 252]);
+      expect(infiniteSegment(0, 4, 1, -1)).toEqual([7, 4, 5]);
     });
   });
 
