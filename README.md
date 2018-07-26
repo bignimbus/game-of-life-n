@@ -1,7 +1,7 @@
 # Game of Life<sup>n</sup>
 
 ## About
-This is a framework for expressing Conway's Game of Life in an n-cube of arbitrary size.  The cube is finite in this interpretation.  Game of Life<sup>n</sup> started as an exercise in functional programming using ES2015 inspired by Reginald Braithwaite's _JavaScript Allongé_.  The exercise was more engaging than I expected, and it led to some interesting questions about how to best express certain data structures in JavaScript.
+This is a framework for expressing Conway's Game of Life in an n-cube of arbitrary size.  Game of Life<sup>n</sup> started as an exercise in functional programming using ES2015 inspired by Reginald Braithwaite's _JavaScript Allongé_.  The exercise was more engaging than I expected, and it led to some interesting questions about how to best express certain data structures in JavaScript.
 
 ## New Game
 The Game of Life<sup>n</sup> module exports a generator function.  The function accepts two optional arguments.  The first argument is an object indicating the size and dimensions of the game field.  The second argument is a comma-separated list of points that represent which cells are "alive" at the start of the game.
@@ -23,7 +23,7 @@ The actual game object is a generator, to be used like so:
 let game = gameFactory({
   size: 4,
   dimensions: 2
-}, 0, 1, 2, 5, 6, 7, 8, 9, 14);
+}, 1, 3, 4, 5, 10, 11);
 
 /* 
 The first value represents the initial game state.  Note that the cells
@@ -32,29 +32,29 @@ that are alive match the indices specified in the arguments.
 game.next().value;
 /*
 [
-  1, 1, 1, 0,
-  0, 1, 1, 1,
+  0, 1, 0, 1,
   1, 1, 0, 0,
-  0, 0, 1, 0
-]
-*/
-
-game.next().value;
-/*
-[
-  1, 0, 0, 1,
-  0, 0, 0, 1,
-  1, 0, 0, 1,
-  0, 1, 0, 0
-]
-*/
-
-game.next().value;
-/*
-[
-  0, 0, 0, 0,
   0, 0, 1, 1,
-  0, 0, 1, 0,
+  0, 0, 0, 0
+]
+*/
+
+game.next().value;
+/*
+[
+  0, 1, 1, 0,
+  0, 1, 0, 0,
+  1, 1, 1, 1,
+  1, 0, 0, 1
+]
+*/
+
+game.next().value;
+/*
+[
+  0, 1, 1, 1,
+  0, 0, 0, 0,
+  0, 0, 0, 0, 
   0, 0, 0, 0
 ]
 */
