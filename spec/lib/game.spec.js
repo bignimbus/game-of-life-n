@@ -49,8 +49,8 @@ describe('game', () => {
         0, 0, 1, 0
       ];
       expect(deadOrAlive(0, 5, plane)).toBe(0);
-      expect(deadOrAlive(0, 8, plane)).toBe(0);
-      expect(deadOrAlive(0, 11, plane)).toBe(1);
+      expect(deadOrAlive(0, 8, plane)).toBe(1);
+      expect(deadOrAlive(0, 11, plane)).toBe(0);
     });
   });
 
@@ -76,10 +76,10 @@ describe('game', () => {
         ],
         state = increment(plane);
       expect(state).toEqual([
-        1, 1, 1, 0,
-        1, 1, 0, 1,
         0, 1, 1, 0,
-        0, 0, 0, 0
+        0, 1, 0, 0,
+        1, 1, 1, 1,
+        1, 0, 0, 1
       ]);
     });
   });
